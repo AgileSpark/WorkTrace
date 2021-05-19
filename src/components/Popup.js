@@ -1,11 +1,16 @@
 import React from 'react';
-import BasicTable from './Table';
+import EnhancedTable from './Table';
+import IconLabelButtons from './SaveIcon';
+import TextButtons from './LogoutBtn';
 
 function Popup() {
   return (
     <div style={styles.main}>
-      <h1>WorkTrace</h1>
-      <BasicTable />
+      <EnhancedTable />
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <IconLabelButtons class="flex-child save" />
+        <TextButtons class="flex-child logout" />
+      </div>
     </div>
   );
 }
