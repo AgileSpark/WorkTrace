@@ -20,3 +20,10 @@ chrome.contextMenus.create({
         alert('first');
     }
 });
+
+let logged = true;
+if(logged == true) {
+    chrome.browserAction.setPopup({popup: "login.html"});
+} else if (logged = true) {
+    chrome.browserAction.setPopup({popup: "popup.html"});
+}
