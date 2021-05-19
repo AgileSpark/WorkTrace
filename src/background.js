@@ -15,7 +15,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
 chrome.contextMenus.create({
     title: "test",
-    contexts: ["browser_action"],
+    contexts: ["all"],
     onclick: function() {
         alert('first');
     }
