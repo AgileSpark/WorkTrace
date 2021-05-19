@@ -37,8 +37,21 @@ function Login() {
     <div style={styles.main}>
         <p style={styles.login}>TESTING LOGIN</p>
         <div style={styles.loginButton}>
-          <Textfield id="username" label="Username" size="small"/>
-        
+          <Textfield 
+            id="username" 
+            label="Username" 
+            size="small"
+            InputLabelProps={{
+              style: {
+                fontSize: 15
+              }
+            }}
+            inputProps={{ 
+              style: {
+                fontSize: 15
+            }
+            }}
+          />
         </div>
         <div style={styles.passwordButton}>
           <Textfield 
@@ -46,12 +59,12 @@ function Login() {
             label="Password" 
             InputLabelProps={{
               style: {
-                fontSize: 10
+                fontSize: 15
               }
             }}
             inputProps={{ 
               style: {
-                fontSize: 10
+                fontSize: 15
             }
             }}
           />
@@ -73,16 +86,12 @@ const styles = {
   loginButton: {
     position: 'absolute',
     left: '50px',
-    top: '80px',
+    top: '70px',
   },
   passwordButton: {
     position: 'absolute',
     left: '50px',
-    top: '140px',
-    height: 10,
-  },
-  inputSize: {
-    height: 10
+    top: '120px',
   }
 }
 
