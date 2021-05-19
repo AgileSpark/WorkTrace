@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlenconded({extended: true}));
 
 // Serve static files
-app.use(express.static(path.resolve(__dirname, '../src/style.css')))
+app.use(express.static(path.resolve(__dirname, '../src/style.css')));
 
 // Routes
 app.use('/login', userRouter);

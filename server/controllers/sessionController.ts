@@ -22,7 +22,7 @@ sessionController.setCookie = (req, res, next) => {
 
 sessionController.setSSIDCookie = (req, res, next) => {
   try {
-    res.cookie('WorkTrace', Math.floor(Math.random() * 99).toString(), {
+    res.cookie('SSID', Math.floor(Math.random() * 99).toString(), {
       httpOnly: true,
       secure: true,
       maxAge: 360000
