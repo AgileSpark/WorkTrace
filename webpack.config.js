@@ -5,8 +5,23 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     devServer: {
+        port: '8080',
+        hot: true,
+        compress: true,
         contentBase: path.resolve(__dirname, './src'),
-        historyApiFallback: true
+        watchContentBase: true,
+        historyApiFallback: true,
+        proxy: {
+          '/login': {
+            target: 'http://localhost:5000/'
+          },
+          '/signup': {
+            target: 'http://localhost:5000/'
+          },
+          '/listings': {
+            target: 'http://localhost:5000/'
+          },
+        }
     },
     entry: {
         popup: path.resolve(__dirname, "./src/index-popup.js"),
