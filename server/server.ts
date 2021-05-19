@@ -19,11 +19,11 @@ app.use(express.urlenconded({extended: true}));
 app.use(express.static(path.resolve(__dirname, '../src/style.css')))
 
 // Routes
-app.use('/login');
+app.use('/login', userRouter);
 
-app.use('/signup');
+app.use('/signup', userRouter);
 
-app.use('/listings');
+app.use('/listings', listingRouter);
 
 // Unknown Routes and Global error handlers
 app.use((req, res) => res.status(400).send('The page your are looking for does not exist on WorkTrace'));

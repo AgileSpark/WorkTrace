@@ -1,14 +1,56 @@
 export = {};
 const db = require ('../schemas/schemaSQL');
 
-interface listingController {}
-interface getListings extends listingController {}
+const listingController = {
+  getListings: {},
+  getListingDetail: {},
+  addListing: {},
+  removeListing: {}
+};
 
-const listingController = {};
-
-// Archetype controller method
 listingController.getListings = (req, res, next) => {
-  // create an initialStateQuery
+  const listingQuery = 
+    `SELECT ***
+    FROM ****
+    `;
+  try {
+    db.query(listingQuery, (err, result) => {
+      const {rows} = result;
+      res.locals.userListings = rows;
+      return next();
+    });
+  } catch (err) {next(err);}
+};
+
+listingController.getListingDetail = (req, res, next) => {
+  const listingQuery = 
+    `SELECT ***
+    FROM ****
+    `;
+  try {
+    db.query(listingQuery, (err, result) => {
+      const {rows} = result;
+      res.locals.userListings = rows;
+      return next();
+    });
+  } catch (err) {next(err);}
+};
+
+listingController.addListing = (req, res, next) => {
+  const listingQuery = 
+    `SELECT ***
+    FROM ****
+    `;
+  try {
+    db.query(listingQuery, (err, result) => {
+      const {rows} = result;
+      res.locals.userListings = rows;
+      return next();
+    });
+  } catch (err) {next(err);}
+};
+
+listingController.removeListing = (req, res, next) => {
   const listingQuery = 
     `SELECT ***
     FROM ****

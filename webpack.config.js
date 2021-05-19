@@ -16,6 +16,22 @@ const config = {
   devServer: {
     open: true,
     host: "localhost",
+    port: '8080',
+    hot: true,
+    compress: true,
+    contentBase: path.resolve(__dirname, "dist"),
+    watchContentBase: true,
+    proxy: {
+      '/login': {
+        target: 'http://localhost:5000/'
+      },
+      '/signup': {
+        target: 'http://localhost:5000/'
+      },
+      '/listings': {
+        target: 'http://localhost:5000/'
+      },
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

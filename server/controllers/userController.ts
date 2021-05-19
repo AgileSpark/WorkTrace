@@ -1,14 +1,56 @@
 export = {};
 const db = require ('../schemas/schemaSQL');
 
-interface userController {}
-interface verifyUser extends userController {}
+const userController = {
+  verifyUser: {},
+  createUser: {},
+  deleteUser: {},
+  updateUserPassword: {}
+};
 
-const userController = {};
-
-// Archetype controller method
 userController.verifyUser = (req, res, next) => {
-  // create an initialStateQuery
+  const userQuery = 
+    `SELECT ***
+    FROM ****
+    `;
+  try {
+    db.query(userQuery, (err, result) => {
+      const {rows} = result;
+      res.locals.verifyUser = rows;
+      return next();
+    });
+  } catch (err) {next(err);}
+};
+
+userController.createUser = (req, res, next) => {
+  const userQuery = 
+    `SELECT ***
+    FROM ****
+    `;
+  try {
+    db.query(userQuery, (err, result) => {
+      const {rows} = result;
+      res.locals.verifyUser = rows;
+      return next();
+    });
+  } catch (err) {next(err);}
+};
+
+userController.deleteUser = (req, res, next) => {
+  const userQuery = 
+    `SELECT ***
+    FROM ****
+    `;
+  try {
+    db.query(userQuery, (err, result) => {
+      const {rows} = result;
+      res.locals.verifyUser = rows;
+      return next();
+    });
+  } catch (err) {next(err);}
+};
+
+userController.updateUserPassword = (req, res, next) => {
   const userQuery = 
     `SELECT ***
     FROM ****
