@@ -1,6 +1,6 @@
 import React from 'react';
 import EnhancedTable from './Table';
-import IconLabelButtons from './SaveIcon';
+import IconLabelButtons from './SaveBtn';
 import TextButtons from './LogoutBtn';
 
 function Popup() {
@@ -18,7 +18,7 @@ function Popup() {
 const styles = {
   main: {
     width: '400px',
-    height: '600px',
+    height: '500px',
   },
 };
 export default Popup;
