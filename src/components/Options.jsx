@@ -8,7 +8,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import Popup from './Popup.js';
+import Popup from './SmallPopUp/Popup';
 import Foreground from './Foreground.js';
 function Options() {
     return (

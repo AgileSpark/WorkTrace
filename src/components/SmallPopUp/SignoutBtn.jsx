@@ -15,7 +15,7 @@ export default function TextButtons() {
 
   return (
     <div className={classes.root}>
-      <Button color="secondary">Log Out</Button>
+      <Button size="small">Sign Out</Button>
     </div>
   );
 }

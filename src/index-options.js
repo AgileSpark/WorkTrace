@@ -1,4 +1,4 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Options from './components/Options.js';
+import Options from './components/Options';
 render(<Options />, document.querySelector('#options'));

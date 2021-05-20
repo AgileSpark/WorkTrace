@@ -16,9 +16,9 @@ export default function ProgressBar({props}) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { progress, company_name} = props;
+  const { progress_step, company} = props;
   // pass in the step number: 
-  const [activeStep, setActiveStep] = useState(progress.step);
+  const [activeStep, setActiveStep] = useState(progress_step);
   const jobSteps = {
     0: "Not Started",
     1: "Sent Resume",
@@ -43,7 +43,7 @@ export default function ProgressBar({props}) {
 
   return (
     <div>
-      <div> {company_name} Application Status: {jobSteps[activeStep]}</div>
+      <div> App Status: {jobSteps[activeStep]}</div>
       <MobileStepper
         variant="progress"
         steps={9}
