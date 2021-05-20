@@ -16,9 +16,9 @@ export default function ProgressBar({props}) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { progress_step, company} = props;
+  const { status, listing_id } = props;
   // pass in the step number: 
-  const [activeStep, setActiveStep] = useState(progress_step);
+  const [activeStep, setActiveStep] = useState(status);
   const jobSteps = {
     0: "Not Started",
     1: "Sent Resume",

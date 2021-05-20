@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -18,11 +18,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createData(website, location, company) {
-  return { website, location, company };
+function createData(source, location, company) {
+  return { source, location, company };
 }
-
-const rows = [
+/*
   createData('indeed', 'LA', 'Riot'),
   createData('linkedIn', 'LA', 'Tinder'),
   createData('monster', 'NYC', 'Uber'),
@@ -33,14 +32,15 @@ const rows = [
   createData('linkedIn', 'LA', 'Facebook'),
   createData('linkedIn', 'SF', 'Google'),
   createData('monster', 'NYC', 'Tesla'),
-];
+*/
+let rows = [];
 
 const headCells = [
   {
-    id: 'website',
+    id: 'source',
     numeric: false,
     disablePadding: true,
-    label: 'Website',
+    label: 'Source',
   },
   { id: 'location', numeric: true, disablePadding: false, label: 'Location' },
   { id: 'company', numeric: true, disablePadding: false, label: 'Company' },
@@ -180,19 +180,42 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EnhancedTable() {
   const classes = useStyles();
+  let currentUserId;
+  const [rows, setListing] = useState([])
+  
+  function retrieveListings () {
+    fetch('https://worktraceserver.herokuapp.com/listings/getListings', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user_id: currentUserId})
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setListing(data.userListings)
+        console.log(rows);
+      })
+      .catch((error) => console.log(error));
+   }
+  
+   useEffect(() => {
+    fetch('https://worktraceserver.herokuapp.com/login/checkSession')
+      .then((res) => res.json())
+      .then((data) => {
+        currentUserId = data.user_id;
+        console.log(currentUserId);
+        retrieveListings();
+        setTimeout(() => {
+          setInterval(() => {
+            retrieveListings();
+          }, 10000)
+        }, 10000)
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-  // const [jobs, setJobs] = useState([]);
-
-  // useEffect(() => {
-  //   getJobList();
-  // }, []);
-
-  // const getJobList = () => {
-  //   fetch('/listing')
-  //     .then((response) => response.json())
-  //     .then((data) => setJobs(data))
-  //     .catch((err) => console.log('getJobList fetch : ERROR: ', err));
-  // };
 
   const [selected, setSelected] = React.useState([]);
 
@@ -271,7 +294,7 @@ export default function EnhancedTable() {
                       scope="row"
                       padding="none"
                     >
-                      {row.website}
+                      <a href={"https://" + row.url} onClick={() => window.open("https://" + row.url)}>{row.source}</a>
                     </TableCell>
                     <TableCell align="right">{row.location}</TableCell>
                     <TableCell align="right">{row.company}</TableCell>

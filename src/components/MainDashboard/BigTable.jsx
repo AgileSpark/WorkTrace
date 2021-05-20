@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -19,30 +19,20 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import ProgressBar from './ProgressBar';
 import Inputs from './Input';
+import Link from '@material-ui/core/Link';
 
-function createData(website, location, company, progress_step) {
-  return { website, location, company, progress_step };
+function createData(source, location, company, progress_step) {
+  return { source, location, company, progress_step };
 }
 
-const rows = [
-  createData('indeed', 'LA', 'Riot', 1),
-  createData('linkedIn', 'LA', 'Tinder', 2),
-  createData('monster', 'NYC', 'Uber', 3),
-  createData('linkedIn', 'NYC', 'Lyft', 4),
-  createData('indeed', 'SF', 'Apple', 5),
-  createData('monster', 'Seattle', 'Amazon', 6),
-  createData('monster', 'SF', 'Microsoft', 7),
-  createData('linkedIn', 'LA', 'Facebook', 8),
-  createData('linkedIn', 'SF', 'Google', 0),
-  createData('monster', 'NYC', 'Tesla', 3),
-];
+let rows = [];
 
 const headCells = [
   {
-    id: 'website',
+    id: 'source',
     numeric: false,
     disablePadding: true,
-    label: 'Website',
+    label: 'Source',
   },
   { id: 'progress', numeric: true, disablePadding: true, label: 'Progress' },
   { id: 'location', numeric: true, disablePadding: false, label: 'Location' },
@@ -183,6 +173,43 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EnhancedTable() {
   const classes = useStyles();
+  let currentUserId;
+  const [rows, setListing] = useState([])
+  
+  function retrieveListings () {
+    fetch('https://worktraceserver.herokuapp.com/listings/getListings', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user_id: currentUserId})
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setListing(data.userListings)
+        // rows = data.userListings;
+        console.log(rows);
+        //console.log(data);
+      })
+      .catch((error) => console.log(error));
+   }
+  
+   useEffect(() => {
+    fetch('https://worktraceserver.herokuapp.com/login/checkSession')
+      .then((res) => res.json())
+      .then((data) => {
+        currentUserId = data.user_id;
+        console.log(currentUserId);
+        retrieveListings();
+        setTimeout(() => {
+          setInterval(() => {
+            retrieveListings();
+          }, 10000)
+        }, 10000)
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   // const [jobs, setJobs] = useState([]);
 
@@ -275,7 +302,7 @@ export default function EnhancedTable() {
                       scope="row"
                       padding="none"
                     >
-                      {row.website}
+                      <a href={"https://" + row.url} onClick={() => window.open("https://" + row.url)}>{row.source}</a>
                     </TableCell>
                     <TableCell align="right" padding="none">
                       <ProgressBar props={rows[index]} />

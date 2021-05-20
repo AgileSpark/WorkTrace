@@ -1,10 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Textfield from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import WorkContext from '../StateContext/workContext'
 
 function Login() {
-  //const state = useContext(WorkContext);
   let myUsername = '';
   let myPassword = '';
 
@@ -20,8 +18,7 @@ function Login() {
       .then((res) => res.json())
       .then((data) => {
         // conditional check
-        if (data.usernameVerified && data.passwordVerified) {
-          //state.user_id = data.user_id;
+        if (data.usernameVerified && data.passwordVerified) { 
           window.location.href = 'popup.html';
         } else {
           alert('Incorrect username or password');
