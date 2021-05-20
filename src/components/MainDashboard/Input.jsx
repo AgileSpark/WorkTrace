@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
+import WorkContext from '../StateContext/workContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Inputs() {
+  //const state = useContext(WorkContext);
+  
+  function add() {
+    console.log("USER ID", state.user_id);
+  }
+
   const classes = useStyles();
 
   return (
@@ -24,23 +31,27 @@ export default function Inputs() {
         }}
       >
         <Input
-          placeholder="Website"
+          placeholder="Company (required)"
+          inputProps={{ 'aria-label': 'description' }}
+        />
+        <Input
+          placeholder="Source (required)"
           inputProps={{ 'aria-label': 'description' }}
         />
         <Input
           placeholder="Location"
           inputProps={{ 'aria-label': 'description' }}
         />
-        <Input
-          placeholder="Company"
-          inputProps={{ 'aria-label': 'description' }}
+        <Input 
+          placeholder="URL" 
+          inputProps={{ 'aria-label': 'description' }} 
         />
-        <Input placeholder="URL" inputProps={{ 'aria-label': 'description' }} />
         <Button
           variant="contained"
           color="primary"
           size="small"
           className={classes.button}
+          onClick={() => add()}
         >
           Add
         </Button>
