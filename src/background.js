@@ -1,5 +1,7 @@
 // background.js
 
+const { default: Login } = require("./components/Login");
+
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete' && 
         tab.url.includes('http')) {
@@ -20,6 +22,8 @@ chrome.contextMenus.create({
         alert('first');
     }
 });
+
+
 
 let logged = true;
 if(logged == true) {
