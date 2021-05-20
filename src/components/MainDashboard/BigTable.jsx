@@ -168,8 +168,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: '250',
-    maxWidth: '400',
+    minWidth: '20',
+    maxWidth: '40',
   },
   visuallyHidden: {
     border: 0,
