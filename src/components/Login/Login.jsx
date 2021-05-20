@@ -107,7 +107,7 @@ function Login() {
       </div>
       <div>
         <p style={styles.signUpText}>
-          Don't have an account yet? Sign up{' '}
+          Don't have an account yet? Sign up
           <a a href="signup.html" onClick={() => changePopup()}>
             here.
           </a>
