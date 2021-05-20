@@ -15,7 +15,6 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "@material-ui/pickers": "^3.3.10",
     "cookie-session": "^1.4.0",
     "express": "^4.12.3",
     "mongoose": "^5.11.8",

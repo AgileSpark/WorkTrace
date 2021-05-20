@@ -15,8 +15,31 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
 chrome.contextMenus.create({
     title: "test",
-    contexts: ["browser_action"],
+    contexts: ["all"],
     onclick: function() {
         alert('first');
     }
 });
+
+var port = chrome.extension.connect({
+    name: "Listener",
+});
+let logged = true;
+
+chrome.extension.onConnect.addListener(function(port) {
+    console.log("Connected");
+    port.onMessage.addListener(function(msg) {
+        console.log(msg);
+        if(msg === "false") {
+            logged = false;
+            chrome.browserAction.setPopup({popup: "signup.html"});
+            //window.location.href="signup.html";
+        }
+    })
+})
+
+if(logged === true) {
+    chrome.browserAction.setPopup({popup: "login.html"});
+} else if (logged === false) {
+    chrome.browserAction.setPopup({popup: "signup.html"});
+}
