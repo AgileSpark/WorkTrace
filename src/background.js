@@ -1,7 +1,5 @@
 // background.js
 
-const { default: Login } = require("./components/Login");
-
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete' && 
         tab.url.includes('http')) {
@@ -23,11 +21,9 @@ chrome.contextMenus.create({
     }
 });
 
-
-
-let logged = true;
-if(logged == true) {
+let logged = false;
+if(logged === true) {
     chrome.browserAction.setPopup({popup: "login.html"});
-} else if (logged = true) {
-    chrome.browserAction.setPopup({popup: "popup.html"});
+} else if (logged === false) {
+    chrome.browserAction.setPopup({popup: "signup.html"});
 }

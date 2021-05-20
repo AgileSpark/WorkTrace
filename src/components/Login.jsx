@@ -73,7 +73,7 @@ function Login() {
         />
       </div>
       <div>
-        <p style={styles.signUpText}>Don't have an account yet? Sign up <a href="javascript:chrome.browserAction.setPopup({popup: 'popup.html'});">here.</a></p>
+        <p style={styles.signUpText}>Don't have an account yet? Sign up <a href="">here.</a></p>
       </div>
       <div style={styles.loginButton}>
         <Button variant="outlined" size="small">Login</Button>
