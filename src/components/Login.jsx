@@ -4,19 +4,18 @@ import Button from '@material-ui/core/Button';
 import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 //import Popup from './Popup.js';
 
-
 function Login() {
   let port = chrome.extension.connect({
-    name: "Listener"
-  })
+    name: 'Listener',
+  });
 
   function changePopup() {
     //port.postMessage("false");
-    window.location.href="signup.html";
+    window.location.href = 'signup.html';
   }
 
   function sendMsg() {
-    port.postMessage("false");
+    port.postMessage('false');
     //window.location.href="signup.html";
   }
 
@@ -30,13 +29,13 @@ function Login() {
           size="small"
           InputLabelProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
           inputProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
         />
       </div>
@@ -46,28 +45,35 @@ function Login() {
           label="Password"
           InputLabelProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
           inputProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
         />
       </div>
       <div>
-        <p style={styles.signUpText}>Don't have an account yet? Sign up <a a href="signup.html" onClick={() => changePopup()}>here.</a></p>
+        <p style={styles.signUpText}>
+          Don't have an account yet? Sign up{' '}
+          <a a href="signup.html" onClick={() => changePopup()}>
+            here.
+          </a>
+        </p>
       </div>
       <div style={styles.loginButton}>
-        <Button variant="outlined" size="small" onClick={() => sendMsg()}>Login</Button>
+        <Button variant="outlined" size="small" onClick={() => sendMsg()}>
+          Login
+        </Button>
       </div>
     </div>
-  )
+  );
 }
 
 function signUp() {
-  chrome.browserAction.setPopup({popup: 'popup.html'});
+  chrome.browserAction.setPopup({ popup: 'popup.html' });
 }
 
 const styles = {
@@ -78,14 +84,14 @@ const styles = {
   loginButton: {
     position: 'absolute',
     left: '100px',
-    top: '210px'
+    top: '210px',
   },
   loginHeader: {
     position: 'absolute',
     left: '85px',
     top: '5px',
     fontFamily: 'Roboto',
-    fontSize: '20px'
+    fontSize: '20px',
   },
   loginInput: {
     position: 'absolute',
@@ -102,15 +108,12 @@ const styles = {
     left: '48px',
     top: '170px',
     fontSize: '8.5px',
-  }
-}
+  },
+};
 
 export default Login;
 
-
-
-  
-  /*useEffect(() => {
+/*useEffect(() => {
     fetch(' ')
     .then((res) => res.json())
     .then((data) => {
@@ -123,7 +126,7 @@ export default Login;
     })
     .catch((error) => console.log(error));
   }, []);*/
-  /* useEffect(() => {
+/* useEffect(() => {
      setLogin(true);
      console.log(loggedIn)
      if(loggedIn === true) {
@@ -132,8 +135,8 @@ export default Login;
        <Redirect to="/login"/>
      }
    },[])*/
-   //const height = 10;
-   //{loggedIn && <Redirect to="/popup"/>}
-   //{!loggedIn && <Redirect to="/login"/>}
-   //<Input placeholder="Username" inputProps={{ 'aria-lable': 'description'}}/>
-   //<Input placeholder="Password" inputProps={{ 'aria-lable': 'description'}}/>
+//const height = 10;
+//{loggedIn && <Redirect to="/popup"/>}
+//{!loggedIn && <Redirect to="/login"/>}
+//<Input placeholder="Username" inputProps={{ 'aria-lable': 'description'}}/>
+//<Input placeholder="Password" inputProps={{ 'aria-lable': 'description'}}/>
