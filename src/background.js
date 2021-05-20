@@ -21,7 +21,23 @@ chrome.contextMenus.create({
     }
 });
 
-let logged = false;
+var port = chrome.extension.connect({
+    name: "Listener",
+});
+let logged = true;
+
+chrome.extension.onConnect.addListener(function(port) {
+    console.log("Connected");
+    port.onMessage.addListener(function(msg) {
+        console.log(msg);
+        if(msg === "false") {
+            logged = false;
+            chrome.browserAction.setPopup({popup: "signup.html"});
+            //window.location.href="signup.html";
+        }
+    })
+})
+
 if(logged === true) {
     chrome.browserAction.setPopup({popup: "login.html"});
 } else if (logged === false) {

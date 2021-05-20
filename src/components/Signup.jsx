@@ -4,6 +4,11 @@ import Button from '@material-ui/core/Button';
 
 function Signup() {
 
+  function changePopup() {
+    //port.postMessage("false");
+    window.location.href="login.html";
+  }
+
   return (
     <div style={styles.main}>
       <p style={styles.signupHeader}>Sign Up</p>
@@ -43,6 +48,9 @@ function Signup() {
       <div style={styles.signupButton}>
         <Button variant="outlined" size="small">Sign Up</Button>
       </div>
+      <div>
+        <p style={styles.backToLogin}><a href="login.html" onClick={() => changePopup()}>Back to login</a></p>
+      </div>
     </div>
   )
 }
@@ -55,6 +63,12 @@ const styles = {
   main: {
     width: '250px',
     height: '250px',
+  },
+  backToLogin: {
+    position: 'absolute',
+    left: '98px',
+    top: '170px',
+    fontSize: '8.5px',
   },
   signupHeader: {
     position: 'absolute',
@@ -77,7 +91,7 @@ const styles = {
     position: 'absolute',
     left: '90px',
     top: '210px'
-  },
+  }
 }
 
 export default Signup;

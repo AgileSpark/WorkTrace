@@ -6,35 +6,19 @@ import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 
 
 function Login() {
-  /*useEffect(() => {
-    fetch(' ')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      if("user is logging in") { 
-        setLogin(true);
-      } else {
-        setLogin(false);
-      }
-    })
-    .catch((error) => console.log(error));
-  }, []);*/
-  /* useEffect(() => {
-     setLogin(true);
-     console.log(loggedIn)
-     if(loggedIn === true) {
-       <Redirect to="/popup"/>
-     } else {
-       <Redirect to="/login"/>
-     }
-   },[])*/
-  const height = 10;
-  //{loggedIn && <Redirect to="/popup"/>}
-  //{!loggedIn && <Redirect to="/login"/>}
-  //<Input placeholder="Username" inputProps={{ 'aria-lable': 'description'}}/>
-  //<Input placeholder="Password" inputProps={{ 'aria-lable': 'description'}}/>
+  let port = chrome.extension.connect({
+    name: "Listener"
+  })
 
+  function changePopup() {
+    //port.postMessage("false");
+    window.location.href="signup.html";
+  }
 
+  function sendMsg() {
+    port.postMessage("false");
+    //window.location.href="signup.html";
+  }
 
   return (
     <div style={styles.main}>
@@ -73,10 +57,10 @@ function Login() {
         />
       </div>
       <div>
-        <p style={styles.signUpText}>Don't have an account yet? Sign up <a href="">here.</a></p>
+        <p style={styles.signUpText}>Don't have an account yet? Sign up <a a href="signup.html" onClick={() => changePopup()}>here.</a></p>
       </div>
       <div style={styles.loginButton}>
-        <Button variant="outlined" size="small">Login</Button>
+        <Button variant="outlined" size="small" onClick={() => sendMsg()}>Login</Button>
       </div>
     </div>
   )
@@ -122,3 +106,34 @@ const styles = {
 }
 
 export default Login;
+
+
+
+  
+  /*useEffect(() => {
+    fetch(' ')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      if("user is logging in") { 
+        setLogin(true);
+      } else {
+        setLogin(false);
+      }
+    })
+    .catch((error) => console.log(error));
+  }, []);*/
+  /* useEffect(() => {
+     setLogin(true);
+     console.log(loggedIn)
+     if(loggedIn === true) {
+       <Redirect to="/popup"/>
+     } else {
+       <Redirect to="/login"/>
+     }
+   },[])*/
+   //const height = 10;
+   //{loggedIn && <Redirect to="/popup"/>}
+   //{!loggedIn && <Redirect to="/login"/>}
+   //<Input placeholder="Username" inputProps={{ 'aria-lable': 'description'}}/>
+   //<Input placeholder="Password" inputProps={{ 'aria-lable': 'description'}}/>
