@@ -10,10 +10,10 @@ function Signup() {
     fetch('https://worktraceserver.herokuapp.com/signup/createUser', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json, text/plain',
-        'Content-Type': 'application/json'
+        Accept: 'application/json, text/plain',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({username: myUsername, password: myPassword})
+      body: JSON.stringify({ username: myUsername, password: myPassword }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -26,7 +26,7 @@ function Signup() {
         }
       })
       .catch((error) => console.log(error));
-  };
+  }
 
   function changePopup() {
     //port.postMessage("false");
@@ -35,17 +35,17 @@ function Signup() {
 
   function handleUserChange(event) {
     myUsername = event.target.value;
-    console.log(event.target.value)
+    console.log(event.target.value);
   }
 
   function handlePassChange(event) {
     myPassword = event.target.value;
-    console.log(event.target.value)
+    console.log(event.target.value);
   }
 
   function changePopup() {
     //port.postMessage("false");
-    window.location.href="login.html";
+    window.location.href = 'login.html';
   }
 
   return (
@@ -58,13 +58,13 @@ function Signup() {
           size="small"
           InputLabelProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
           inputProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
           onChange={handleUserChange}
         />
@@ -76,25 +76,31 @@ function Signup() {
           type="password"
           InputLabelProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
           inputProps={{
             style: {
-              fontSize: 15
-            }
+              fontSize: 15,
+            },
           }}
           onChange={handlePassChange}
         />
       </div>
       <div style={styles.signupButton}>
-        <Button variant="outlined" size="small" onClick={() => signup()}>Sign Up</Button>
+        <Button variant="outlined" size="small" onClick={() => signup()}>
+          Sign Up
+        </Button>
       </div>
       <div>
-        <p style={styles.backToLogin}><a href="login.html" onClick={() => changePopup()}>Back to login</a></p>
+        <p style={styles.backToLogin}>
+          <a href="login.html" onClick={() => changePopup()}>
+            Back to login
+          </a>
+        </p>
       </div>
     </div>
-  )
+  );
 }
 
 const styles = {
@@ -110,10 +116,10 @@ const styles = {
   },
   signupHeader: {
     position: 'absolute',
-    left: '95px',
+    left: '80px',
     top: '5px',
-    fontFamily: 'Roboto',
-    fontSize: '20px'
+    fontFamily: `Orbitron, sans-serif`,
+    fontSize: '20px',
   },
   accountInput: {
     position: 'absolute',
@@ -128,8 +134,8 @@ const styles = {
   signupButton: {
     position: 'absolute',
     left: '90px',
-    top: '210px'
-  }
-}
+    top: '210px',
+  },
+};
 
 export default Signup;
