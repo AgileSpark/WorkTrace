@@ -18,6 +18,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import ProgressBar from './ProgressBar';
+import Inputs from './Input';
 
 function createData(website, location, company, progress_step) {
   return { website, location, company, progress_step };
@@ -125,9 +126,10 @@ const EnhancedTableToolbar = (props) => {
       ) : (
         <Typography
           className={classes.title}
-          variant="h6"
+          variant="h4"
           id="tableTitle"
           component="div"
+          style={{ fontWeight: 600, fontFamily: `Orbitron, sans-serif` }}
         >
           WorkTrace
         </Typography>
@@ -232,6 +234,7 @@ export default function EnhancedTable() {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
+        <Inputs />
         <TableContainer>
           <Table
             className={classes.table}

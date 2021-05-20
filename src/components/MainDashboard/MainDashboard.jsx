@@ -12,7 +12,7 @@ function MainDashboard() {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          width: '95%',
+          width: '96%',
         }}
       >
         <IconLabelButtons />
