@@ -162,6 +162,7 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 150,
+    maxWidth: 200,
   },
   visuallyHidden: {
     border: 0,
@@ -178,6 +179,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EnhancedTable() {
   const classes = useStyles();
+
+  // const [jobs, setJobs] = useState([]);
+
+  // useEffect(() => {
+  //   getJobList();
+  // }, []);
+
+  // const getJobList = () => {
+  //   fetch('/listing')
+  //     .then((response) => response.json())
+  //     .then((data) => setJobs(data))
+  //     .catch((err) => console.log('getJobList fetch : ERROR: ', err));
+  // };
 
   const [selected, setSelected] = React.useState([]);
 
