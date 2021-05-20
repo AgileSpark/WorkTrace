@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Textfield from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 function Signup() {
   let myUsername = '';
   let myPassword = '';
-
+  
   function signup() {
     fetch('https://worktraceserver.herokuapp.com/signup/createUser', {
       method: 'POST',
@@ -28,24 +28,16 @@ function Signup() {
       .catch((error) => console.log(error));
   }
 
-  function changePopup() {
-    //port.postMessage("false");
-    window.location.href = 'dashboard.html';
-  }
-
   function handleUserChange(event) {
     myUsername = event.target.value;
-    console.log(event.target.value);
   }
 
   function handlePassChange(event) {
     myPassword = event.target.value;
-    console.log(event.target.value);
   }
 
   function changePopup() {
-    //port.postMessage("false");
-    window.location.href = 'login.html';
+    window.location.href="login.html";
   }
 
   return (

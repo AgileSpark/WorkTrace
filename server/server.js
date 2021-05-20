@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
 
 const app = express();
@@ -11,7 +10,6 @@ const userRouter = require('./routes/userRouter');
 const listingRouter = require('./routes/listingRouter');
 
 // Parse the body of requests and apply cors
-app.use(cors());
 app.use(express.json());
 app.use(express.urlenconded({extended: true}));
 

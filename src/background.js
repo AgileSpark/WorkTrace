@@ -17,14 +17,17 @@ chrome.contextMenus.create({
     title: "test",
     contexts: ["all"],
     onclick: function() {
-        window.location.href = 'signup.html';
+        alert('first');
     }
 });
+
+/*
 
 var port = chrome.extension.connect({
     name: "Listener",
 });
-let logged = true;
+
+
 
 chrome.extension.onConnect.addListener(function(port) {
     console.log("Connected");
@@ -42,6 +45,4 @@ if(logged === true) {
     chrome.browserAction.setPopup({popup: "login.html"});
 } else if (logged === false) {
     chrome.browserAction.setPopup({popup: "signup.html"});
-}
-
-
+} */

@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Textfield from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
-//import Popup from './Popup.js';
 
 function Login() {
-  /*let port = chrome.extension.connect({
-    name: 'Listener',
-  });
-
-  function sendMsg() {
-    port.postMessage('false');
-    //window.location.href="signup.html";
-  }*/
   let myUsername = '';
   let myPassword = '';
 
@@ -28,7 +18,7 @@ function Login() {
       .then((res) => res.json())
       .then((data) => {
         // conditional check
-        if (data.usernameVerified && data.passwordVerified) {
+        if (data.usernameVerified && data.passwordVerified) { 
           window.location.href = 'popup.html';
         } else {
           alert('Incorrect username or password');
@@ -39,18 +29,15 @@ function Login() {
   }
 
   function changePopup() {
-    //port.postMessage("false");
     window.location.href = 'signup.html';
   }
 
   function handleUserChange(event) {
     myUsername = event.target.value;
-    console.log(event.target.value);
   }
 
   function handlePassChange(event) {
     myPassword = event.target.value;
-    console.log(event.target.value);
   }
 
   useEffect(() => {
@@ -69,47 +56,47 @@ function Login() {
   return (
     <div style={styles.main}>
       <p style={styles.loginHeader}>WorkTrace</p>
-      <div style={styles.loginInput}>
-        <Textfield
-          id="username"
-          label="Username"
-          size="small"
-          InputLabelProps={{
-            style: {
-              fontSize: 15,
-            },
-          }}
-          inputProps={{
-            style: {
-              fontSize: 15,
-            },
-          }}
-          onChange={handleUserChange}
-        />
-      </div>
-      <div style={styles.passwordInput}>
-        <Textfield
-          id="password"
-          label="Password"
-          type="password"
-          InputLabelProps={{
-            style: {
-              fontSize: 15,
-            },
-          }}
-          inputProps={{
-            style: {
-              fontSize: 15,
-            },
-          }}
-          onChange={handlePassChange}
-        />
-      </div>
-      <div>
-        <p style={styles.signUpText}>
-          Don't have an account yet? Sign up
-          <a a href="signup.html" onClick={() => changePopup()}>
-            here.
+        <div style={styles.loginInput}>
+          <Textfield
+            id="username"
+            label="Username"
+            size="small"
+            InputLabelProps={{
+              style: {
+                fontSize: 15,
+              },
+            }}
+            inputProps={{
+              style: {
+                fontSize: 15,
+              },
+            }}
+            onChange={handleUserChange}
+          />
+        </div>
+        <div style={styles.passwordInput}>
+          <Textfield
+            id="password"
+            label="Password"
+            type="password"
+            InputLabelProps={{
+              style: {
+                fontSize: 15,
+              }
+            }}
+            inputProps={{
+              style: {
+                fontSize: 15,
+              },
+            }}
+            onChange={handlePassChange}
+          />
+        </div>
+        <div>
+          <p style={styles.signUpText}>
+            Don't have an account yet? Sign up {' '}
+            <a a href="signup.html" onClick={() => changePopup()}>
+              here.
           </a>
         </p>
       </div>
@@ -120,10 +107,6 @@ function Login() {
       </div>
     </div>
   );
-}
-
-function signUp() {
-  chrome.browserAction.setPopup({ popup: 'popup.html' });
 }
 
 const styles = {
@@ -162,31 +145,3 @@ const styles = {
 };
 
 export default Login;
-
-/*useEffect(() => {
-    fetch(' ')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      if("user is logging in") {
-        setLogin(true);
-      } else {
-        setLogin(false);
-      }
-    })
-    .catch((error) => console.log(error));
-  }, []);*/
-/* useEffect(() => {
-     setLogin(true);
-     console.log(loggedIn)
-     if(loggedIn === true) {
-       <Redirect to="/popup"/>
-     } else {
-       <Redirect to="/login"/>
-     }
-   },[])*/
-//const height = 10;
-//{loggedIn && <Redirect to="/popup"/>}
-//{!loggedIn && <Redirect to="/login"/>}
-//<Input placeholder="Username" inputProps={{ 'aria-lable': 'description'}}/>
-//<Input placeholder="Password" inputProps={{ 'aria-lable': 'description'}}/>
