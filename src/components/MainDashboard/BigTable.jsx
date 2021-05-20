@@ -17,14 +17,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import ProgressBar from './ProgressBar'
+import ProgressBar from './ProgressBar';
+import Inputs from './Input';
 
 function createData(website, location, company, progress_step) {
-  return { website,
-           location,
-           company,
-           progress_step
-          };
+  return { website, location, company, progress_step };
 }
 
 const rows = [
@@ -47,10 +44,9 @@ const headCells = [
     disablePadding: true,
     label: 'Website',
   },
-  { id: 'progress', numeric: true, disablePadding: false, label: 'Progress' },
+  { id: 'progress', numeric: true, disablePadding: true, label: 'Progress' },
   { id: 'location', numeric: true, disablePadding: false, label: 'Location' },
   { id: 'company', numeric: true, disablePadding: false, label: 'Company' },
-  
 ];
 
 function EnhancedTableHead(props) {
@@ -130,9 +126,10 @@ const EnhancedTableToolbar = (props) => {
       ) : (
         <Typography
           className={classes.title}
-          variant="h6"
+          variant="h4"
           id="tableTitle"
           component="div"
+          style={{ fontWeight: 600, fontFamily: `Orbitron, sans-serif` }}
         >
           WorkTrace
         </Typography>
@@ -161,15 +158,15 @@ EnhancedTableToolbar.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: '95%',
   },
   paper: {
     width: '100%',
     marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: '20',
-    maxWidth: '40',
+    minWidth: '200',
+    maxWidth: '350',
   },
   visuallyHidden: {
     border: 0,
@@ -181,7 +178,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: 20,
     width: 1,
-  }
+  },
 }));
 
 export default function EnhancedTable() {
@@ -234,9 +231,10 @@ export default function EnhancedTable() {
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   return (
-    <div className={classes.root}>      
+    <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
+        <Inputs />
         <TableContainer>
           <Table
             className={classes.table}
@@ -258,7 +256,6 @@ export default function EnhancedTable() {
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.company)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -269,6 +266,7 @@ export default function EnhancedTable() {
                       <Checkbox
                         checked={isItemSelected}
                         inputProps={{ 'aria-labelledby': labelId }}
+                        onClick={(event) => handleClick(event, row.company)}
                       />
                     </TableCell>
                     <TableCell
@@ -279,7 +277,9 @@ export default function EnhancedTable() {
                     >
                       {row.website}
                     </TableCell>
-                    <TableCell align="right"><ProgressBar props = {rows[index]}/></TableCell>
+                    <TableCell align="right" padding="none">
+                      <ProgressBar props={rows[index]} />
+                    </TableCell>
                     <TableCell align="right">{row.location}</TableCell>
                     <TableCell align="right">{row.company}</TableCell>
                   </TableRow>
