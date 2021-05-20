@@ -123,9 +123,10 @@ const EnhancedTableToolbar = (props) => {
       ) : (
         <Typography
           className={classes.title}
-          variant="h6"
+          variant="h5"
           id="tableTitle"
           component="div"
+          style={{ fontWeight: 600, fontFamily: `Orbitron, sans-serif` }}
         >
           WorkTrace
         </Typography>
