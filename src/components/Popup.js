@@ -6,6 +6,7 @@ function Popup() {
         </div>
     )
 }
+
 const styles = {
     main: {
         width: '600px',

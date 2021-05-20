@@ -26,7 +26,9 @@ module.exports = {
     entry: {
         popup: path.resolve(__dirname, "./src/index-popup.js"),
         options: path.resolve(__dirname, "./src/index-options.js"),
-        foreground: path.resolve(__dirname, "./src/index-foreground.js")
+        foreground: path.resolve(__dirname, "./src/index-foreground.js"),
+        login: path.resolve(__dirname, "./src/index-login.js"),
+        signup: path.resolve(__dirname, "./src/index-signup.js")
     },
     output: {
         filename: '[name].bundle.js',
@@ -36,7 +38,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?/,
+                exclude: /(node_modules|bower_components)/,
                 use: [
                     {
                         loader: 'babel-loader',
@@ -74,6 +77,16 @@ module.exports = {
             template: 'src/foreground.html',
             chunks: ['foreground']
         }),
+        new HtmlWebpackPlugin({
+            filename: 'login.html',
+            template: 'src/login.html',
+            chunks: ['login']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'signup.html',
+            template: 'src/signup.html',
+            chunks: ['signup']
+        }),
         new CopyWebpackPlugin({
             patterns: [
                 { from: 'src/manifest.json', to: '[name].[ext]' },
@@ -83,5 +96,8 @@ module.exports = {
             ]
         }),
         new CleanWebpackPlugin()
-    ]
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    }
 }
