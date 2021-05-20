@@ -28,7 +28,8 @@ module.exports = {
         options: path.resolve(__dirname, "./src/index-options.js"),
         foreground: path.resolve(__dirname, "./src/index-foreground.js"),
         login: path.resolve(__dirname, "./src/index-login.js"),
-        signup: path.resolve(__dirname, "./src/index-signup.js")
+        signup: path.resolve(__dirname, "./src/index-signup.js"),
+        dashboard: path.resolve(__dirname, "./src/index-dashboard.js")
     },
     output: {
         filename: '[name].bundle.js',
@@ -58,7 +59,13 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: ['html-loader']
-            }
+            },
+            {
+              test: /\.css$/,
+              // react-step-progress requires in the css styling in the node_modules folder
+              // exclude: /node_modules/,
+              use: ['style-loader', 'css-loader'],
+            },
         ]
     },
     plugins: [
@@ -86,6 +93,11 @@ module.exports = {
             filename: 'signup.html',
             template: 'src/signup.html',
             chunks: ['signup']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'dashboard.html',
+            template: 'src/dashboard.html',
+            chunks: ['dashboard']
         }),
         new CopyWebpackPlugin({
             patterns: [
