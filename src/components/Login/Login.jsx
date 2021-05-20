@@ -10,10 +10,10 @@ function Login() {
     fetch('https://worktraceserver.herokuapp.com/login/verifyUser', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json, text/plain',
-        'Content-Type': 'application/json'
+        Accept: 'application/json, text/plain',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({username: myUsername, password: myPassword})
+      body: JSON.stringify({ username: myUsername, password: myPassword }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -26,7 +26,7 @@ function Login() {
         }
       })
       .catch((error) => console.log(error));
-  };
+  }
 
   function changePopup() {
     window.location.href = 'signup.html';
@@ -44,7 +44,7 @@ function Login() {
     fetch('https://worktraceserver.herokuapp.com/login/checkSession')
       .then((res) => res.json())
       .then((data) => {
-        if(data.user_id && data.username) {
+        if (data.user_id && data.username) {
           window.location.href = 'popup.html';
         } else {
           window.location.href = 'login.html';
@@ -98,13 +98,13 @@ function Login() {
             <a a href="signup.html" onClick={() => changePopup()}>
               here.
           </a>
-          </p>
-        </div>
-        <div style={styles.loginButton}>
-          <Button variant="outlined" size="small" onClick={() => login()}>
-            Login
-          </Button>
-        </div>
+        </p>
+      </div>
+      <div style={styles.loginButton}>
+        <Button variant="outlined" size="small" onClick={() => login()}>
+          Login
+        </Button>
+      </div>
     </div>
   );
 }
@@ -121,9 +121,9 @@ const styles = {
   },
   loginHeader: {
     position: 'absolute',
-    left: '85px',
+    left: '58px',
     top: '5px',
-    fontFamily: 'Roboto',
+    fontFamily: `Orbitron, sans-serif`,
     fontSize: '20px',
   },
   loginInput: {
