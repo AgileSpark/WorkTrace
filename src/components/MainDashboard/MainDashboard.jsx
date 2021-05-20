@@ -8,9 +8,15 @@ function MainDashboard() {
   return (
     <div style={styles.main}>
       <BigTable />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '95%',
+        }}
+      >
         <IconLabelButtons />
-        <ContainedButtons label='Mini Mode'/>
+        <ContainedButtons label="Mini Mode" />
         <TextButtons />
       </div>
     </div>
