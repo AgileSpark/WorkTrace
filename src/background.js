@@ -17,7 +17,7 @@ chrome.contextMenus.create({
     title: "test",
     contexts: ["all"],
     onclick: function() {
-        alert('first');
+        window.location.href = 'signup.html';
     }
 });
 
@@ -43,3 +43,5 @@ if(logged === true) {
 } else if (logged === false) {
     chrome.browserAction.setPopup({popup: "signup.html"});
 }
+
+

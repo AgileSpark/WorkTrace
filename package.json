@@ -17,6 +17,7 @@
     "@material-ui/icons": "^4.11.2",
     "cookie-session": "^1.4.0",
     "express": "^4.12.3",
+    "linkedin-jobs-scraper": "^6.1.0",
     "mongoose": "^5.11.8",
     "passport": "^0.4.1",
     "pg": "^8.6.0",
