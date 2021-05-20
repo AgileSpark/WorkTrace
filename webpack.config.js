@@ -36,7 +36,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?/,
                 use: [
                     {
                         loader: 'babel-loader',
@@ -55,7 +55,13 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: ['html-loader']
-            }
+            },
+            {
+              test: /\.css$/,
+              // react-step-progress requires in the css styling in the node_modules folder
+              // exclude: /node_modules/,
+              use: ['style-loader', 'css-loader'],
+            },
         ]
     },
     plugins: [
