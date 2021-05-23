@@ -14,10 +14,10 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 });
 
 chrome.contextMenus.create({
-    title: "test",
+    title: "Save to WorkTrace",
     contexts: ["all"],
     onclick: function() {
-        alert('first');
+        alert('Work in Progress!');
     }
 });
 

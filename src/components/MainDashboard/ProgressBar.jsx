@@ -18,24 +18,39 @@ export default function ProgressBar({props}) {
 
   const { status, listing_id } = props;
   // pass in the step number: 
-  const [activeStep, setActiveStep] = useState(status);
+  const [activeStep, setActiveStep] = useState(Number(status));
   const jobSteps = {
-    0: "Not Started",
-    1: "Sent Resume",
+    0: "Not Started                  ",
+    1: "Sent Resume                  ",
     2: "Contacted/Interview Scheduled",
-    3: "Initial Interview",
-    4: "2nd round Interview",
-    5: "3rd round Interview",
-    6: "Offer",
-    7: "Negotiations",
-    8: "Accepted"
+    3: "Initial Interview            ",
+    4: "2nd round Interview          ",
+    5: "3rd round Interview          ",
+    6: "Offer                        ",
+    7: "Negotiations                 ",
+    8: "Accepted                     "
   };
+
+  function updateStatus(currentStep) {
+    fetch('https://worktraceserver.herokuapp.com/listings/updateStatus', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({status: currentStep, listing_id: listing_id})
+    })
+      .catch((error) => console.log(error));
+  };
+
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((nextActiveStep) => nextActiveStep + 1);
+    updateStatus(activeStep);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    updateStatus(activeStep);
   };
   const updateStepInDatabase = () => {
     // fetch request 

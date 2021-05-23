@@ -121,7 +121,7 @@ const styles = {
   },
   loginHeader: {
     position: 'absolute',
-    left: '58px',
+    left: '65px',
     top: '5px',
     fontFamily: `Orbitron, sans-serif`,
     fontSize: '20px',
