@@ -19,7 +19,6 @@ export default function Inputs() {
   let myUrl;
 
   function add() {
-    console.log("STUFF I SENT: " , myUserId, myCompany, mySource, myLocation, myUrl);
     fetch('https://worktraceserver.herokuapp.com/listings/addListing', {
       method: 'POST',
       headers: {
@@ -37,7 +36,6 @@ export default function Inputs() {
           //alert("Company and Source are required")
         }
         // conditional check
-        console.log(data);
       })
       .catch((error) => console.log(error));
   };

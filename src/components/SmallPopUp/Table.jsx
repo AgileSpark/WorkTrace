@@ -21,6 +21,24 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 function createData(source, location, company) {
   return { source, location, company };
 }
+let deletion = {};
+
+function deleteListing() {
+  fetch('https://worktraceserver.herokuapp.com/listings/removeListing', {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json, text/plain',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({listings: deletion})
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => console.log(error));
+ }
+
 /*
   createData('indeed', 'LA', 'Riot'),
   createData('linkedIn', 'LA', 'Tinder'),
@@ -134,8 +152,10 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
+          <IconButton aria-label="delete" >
+            <DeleteIcon 
+              onClick={() => deleteListing()}
+            />
           </IconButton>
         </Tooltip>
       ) : (
@@ -210,8 +230,8 @@ export default function EnhancedTable() {
         setTimeout(() => {
           setInterval(() => {
             retrieveListings();
-          }, 10000)
-        }, 10000)
+          }, 1000)
+        }, 1000)
       })
       .catch((error) => console.log(error));
   }, []);
@@ -281,11 +301,19 @@ export default function EnhancedTable() {
                     tabIndex={-1}
                     key={row.name}
                     selected={isItemSelected}
+                    id={row.listing_id}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={isItemSelected}
                         inputProps={{ 'aria-labelledby': labelId }}
+                        onClick={() => {
+                          if (deletion.hasOwnProperty(row.listing_id)) {
+                            delete deletion[row.listing_id];
+                          } else {
+                            deletion[row.listing_id] = row.listing_id;
+                          }
+                        }}
                       />
                     </TableCell>
                     <TableCell
@@ -294,7 +322,7 @@ export default function EnhancedTable() {
                       scope="row"
                       padding="none"
                     >
-                      <a href={"https://" + row.url} onClick={() => window.open("https://" + row.url)}>{row.source}</a>
+                      <a href={row.url} onClick={() => window.open(row.url)}>{row.source}</a>
                     </TableCell>
                     <TableCell align="right">{row.location}</TableCell>
                     <TableCell align="right">{row.company}</TableCell>

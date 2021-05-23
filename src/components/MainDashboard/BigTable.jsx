@@ -19,7 +19,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import ProgressBar from './ProgressBar';
 import Inputs from './Input';
-import Link from '@material-ui/core/Link';
 
 function createData(source, location, company, progress_step) {
   return { source, location, company, progress_step };
@@ -205,8 +204,8 @@ export default function EnhancedTable() {
         setTimeout(() => {
           setInterval(() => {
             retrieveListings();
-          }, 10000)
-        }, 10000)
+          }, 2000)
+        }, 2000)
       })
       .catch((error) => console.log(error));
   }, []);
@@ -302,7 +301,7 @@ export default function EnhancedTable() {
                       scope="row"
                       padding="none"
                     >
-                      <a href={"https://" + row.url} onClick={() => window.open("https://" + row.url)}>{row.source}</a>
+                      <a href={row.url} onClick={() => window.open(row.url)}>{row.source}</a>
                     </TableCell>
                     <TableCell align="right" padding="none">
                       <ProgressBar props={rows[index]} />

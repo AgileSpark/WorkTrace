@@ -108,7 +108,7 @@ const styles = {
   },
   signupHeader: {
     position: 'absolute',
-    left: '80px',
+    left: '85px',
     top: '5px',
     fontFamily: `Orbitron, sans-serif`,
     fontSize: '20px',
